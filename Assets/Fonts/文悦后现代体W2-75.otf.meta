@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 11c818c4a5b180344becb1a4fe29eff9
+timeCreated: 1500970336
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: WenYue HouXianDaiTi (Non-Commercial Use)
+  fontNames:
+  - WenYue HouXianDaiTi (Non-Commercial Use)
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 902ea4f429f468a479289d35d183d292, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

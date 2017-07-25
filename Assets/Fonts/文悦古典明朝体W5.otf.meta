@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 351319fc7621ded4abbc26e6f6977b8c
+timeCreated: 1500970781
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: WenYue GuDianMingChaoTi (Non-Commercial Use)
+  fontNames:
+  - WenYue GuDianMingChaoTi (Non-Commercial Use)
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 61fac5e976255d441b4349f3367cd03c
+timeCreated: 1500971224
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: WenyueType GutiFangsong (Non-Commercial Use)
+  fontNames:
+  - WenyueType GutiFangsong (Non-Commercial Use)
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

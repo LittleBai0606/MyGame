@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 2f0899246e4628c4a91cf81efe507d39
+timeCreated: 1500970855
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: WenYue QingLongTi (Non-Commercial Use)
+  fontNames:
+  - WenYue QingLongTi (Non-Commercial Use)
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
