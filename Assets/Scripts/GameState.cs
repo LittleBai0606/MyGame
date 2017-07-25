@@ -10,6 +10,5 @@ public enum GameState
     Ready,
     Play,
     Pause,
-    Stop,
     Over
 }

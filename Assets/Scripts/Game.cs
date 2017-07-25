@@ -18,7 +18,9 @@ namespace Assets.Scripts
             m_Instance = this;
         }
 
+        #region 事件
         public event Action<GameState> onStateChanged;
+        #endregion
 
         #region 变量
 
@@ -38,17 +40,19 @@ namespace Assets.Scripts
 
         #endregion
 
-        #region Player
-
+        #region 演员
         public GameUI gameUI = null;
+
+        public Ball ball = null;
 
 
         #endregion
 
         void Start()
         {
+            //监听
             onStateChanged += Game_onStateChanged;
-
+            //初始进入Init
             GotoInit();
         }
 
@@ -82,19 +86,51 @@ namespace Assets.Scripts
             this.gameState = GameState.Pause;
         }
 
-        public void GotoStop()
-        {
-            this.gameState = GameState.Stop;
-        }
-
         public void GotoOver()
         {
             this.gameState = GameState.Over;
         }
 
-        private void Game_onStateChanged(GameState obj)
-        {
-            throw new NotImplementedException();
+        private void Game_onStateChanged(GameState state)
+        {   
+            switch (state)
+            {
+                case GameState.Init:
+                    gameUI.UpdateUI(state);
+                    ball.IsVisible = false;
+                    break;
+
+                case GameState.Guide:
+                    gameUI.UpdateUI(state);
+                    ball.IsVisible = false;
+                    break;
+
+                case GameState.Settings:
+                    gameUI.UpdateUI(state);
+                    ball.IsVisible = false;
+                    break;
+
+                case GameState.Ready:
+                    gameUI.UpdateUI(state);
+                    ball.IsVisible = false;
+                    break;
+
+                case GameState.Play:
+                    gameUI.UpdateUI(state);
+                    ball.IsVisible = true;
+                    break;
+
+                case GameState.Pause:
+                    gameUI.UpdateUI(state);
+                    ball.IsVisible = false;
+                    break;
+
+                case GameState.Over:
+                    gameUI.UpdateUI(state);
+                    ball.IsVisible = false;
+                    break;
+            }
+            
         }
     }
 }
