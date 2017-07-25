@@ -9,5 +9,7 @@ public enum GameState
     Guide,
     Ready,
     Play,
+    Pause,
+    Stop,
     Over
 }
