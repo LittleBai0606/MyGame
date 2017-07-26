@@ -11,6 +11,7 @@ public class GameUI : MonoBehaviour
     public GameObject ButtonSettings;
     public GameObject GuideUI;
     public GameObject SettingsUI;
+    public GameObject ReadyUI;
     public GameObject PauseUI;
     public GameObject OverUI;
     public GameObject ScoreText;
@@ -74,9 +75,37 @@ public class GameUI : MonoBehaviour
                 break;
 
             case GameState.Ready:
+                Logo.SetActive(false);
+                ButtonStart.SetActive(false);
+                ButtonGuide.SetActive(false);
+                ButtonSettings.SetActive(false);
+                GuideUI.SetActive(false);
+                SettingsUI.SetActive(false);
+                ReadyUI.SetActive(true);
+                PauseUI.SetActive(false);
+                OverUI.SetActive(false);
+                ScoreText.SetActive(false);
+                Score.SetActive(false);
+                PauseButton.SetActive(false);
+                ContinueButton.SetActive(false);
+                StopButton.SetActive(false);
                 break;
 
             case GameState.Play:
+                Logo.SetActive(false);
+                ButtonStart.SetActive(false);
+                ButtonGuide.SetActive(false);
+                ButtonSettings.SetActive(false);
+                GuideUI.SetActive(false);
+                SettingsUI.SetActive(false);
+                ReadyUI.SetActive(false);
+                PauseUI.SetActive(false);
+                OverUI.SetActive(false);
+                ScoreText.SetActive(true);
+                Score.SetActive(true);
+                PauseButton.SetActive(true);
+                ContinueButton.SetActive(false);
+                StopButton.SetActive(true);
                 break;
 
             case GameState.Pause:

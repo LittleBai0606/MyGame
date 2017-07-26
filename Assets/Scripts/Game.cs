@@ -6,6 +6,8 @@ namespace Assets.Scripts
     public class Game : MonoBehaviour
     {
 
+
+        private bool isFirstTimeInInit;
         private static Game m_Instance = null;
 
         public static Game Instance
@@ -42,7 +44,7 @@ namespace Assets.Scripts
 
         #region 演员
         public GameUI gameUI = null;
-
+        public BackGround background = null;
         public Ball ball = null;
 
 
@@ -53,6 +55,7 @@ namespace Assets.Scripts
             //监听
             onStateChanged += Game_onStateChanged;
             //初始进入Init
+            isFirstTimeInInit = true;
             GotoInit();
         }
 
@@ -97,7 +100,10 @@ namespace Assets.Scripts
             {
                 case GameState.Init:
                     gameUI.UpdateUI(state);
+                    if(isFirstTimeInInit)
+                        background.RandomShow();
                     ball.IsVisible = false;
+                    isFirstTimeInInit = false;
                     break;
 
                 case GameState.Guide:
@@ -117,6 +123,7 @@ namespace Assets.Scripts
 
                 case GameState.Play:
                     gameUI.UpdateUI(state);
+                    ball.IsVisible = false;
                     ball.IsVisible = true;
                     break;
 

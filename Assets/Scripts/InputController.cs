@@ -1,19 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Assets.Scripts;
 using UnityEngine;
 
-public class Ball : MonoBehaviour {
+public class InputController : MonoBehaviour {
 
-    private bool isMouseDown = false;
+	private bool isMouseDown = false;
 
     private Vector3 lastMousePosition = Vector3.zero;
 
-    public bool IsVisible
-    {
-        get { return gameObject.activeInHierarchy; }
-        set { gameObject.SetActive(value);}
-    }
+    private bool Enable { get; set; }
 
     void Update()
     {
@@ -37,18 +32,4 @@ public class Ball : MonoBehaviour {
 
         }
     }
-
-    public void OnCollisonEnter2D(Collision2D collision)
-    {
-        if (Game.Instance.gameState != GameState.Ready)
-        {
-            string tag = collision.transform.tag;
-            if (tag == "Border")
-            {
-                Debug.Log("碰到" + tag + "了");
-            }
-        }
-    }
-    
-
 }
