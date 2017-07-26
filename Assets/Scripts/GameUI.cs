@@ -14,6 +14,7 @@ public class GameUI : MonoBehaviour
     public GameObject ReadyUI;
     public GameObject PauseUI;
     public GameObject OverUI;
+    public GameObject FinalUI;
     public GameObject ScoreText;
     public GameObject Score;
     public GameObject PauseButton;
@@ -35,6 +36,7 @@ public class GameUI : MonoBehaviour
                 SettingsUI.SetActive(false);
                 PauseUI.SetActive(false);
                 OverUI.SetActive(false);
+                FinalUI.SetActive(false);
                 ScoreText.SetActive(false);
                 Score.SetActive(false);
                 PauseButton.SetActive(false);
@@ -51,6 +53,7 @@ public class GameUI : MonoBehaviour
                 SettingsUI.SetActive(false);
                 PauseUI.SetActive(false);
                 OverUI.SetActive(false);
+                FinalUI.SetActive(false);
                 ScoreText.SetActive(false);
                 Score.SetActive(false);
                 PauseButton.SetActive(false);
@@ -67,6 +70,7 @@ public class GameUI : MonoBehaviour
                 SettingsUI.SetActive(true);
                 PauseUI.SetActive(false);
                 OverUI.SetActive(false);
+                FinalUI.SetActive(false);
                 ScoreText.SetActive(false);
                 Score.SetActive(false);
                 PauseButton.SetActive(false);
@@ -84,6 +88,7 @@ public class GameUI : MonoBehaviour
                 ReadyUI.SetActive(true);
                 PauseUI.SetActive(false);
                 OverUI.SetActive(false);
+                FinalUI.SetActive(false);
                 ScoreText.SetActive(false);
                 Score.SetActive(false);
                 PauseButton.SetActive(false);
@@ -101,6 +106,7 @@ public class GameUI : MonoBehaviour
                 ReadyUI.SetActive(false);
                 PauseUI.SetActive(false);
                 OverUI.SetActive(false);
+                FinalUI.SetActive(false);
                 ScoreText.SetActive(true);
                 Score.SetActive(true);
                 PauseButton.SetActive(true);
@@ -109,13 +115,59 @@ public class GameUI : MonoBehaviour
                 break;
 
             case GameState.Pause:
+                Time.timeScale = 0;
+                PauseUI.SetActive(true);
+                PauseButton.SetActive(false);
+                ContinueButton.SetActive(true);
+                StopButton.SetActive(true);
+                ScoreText.SetActive(false);
+                Score.SetActive(false);
                 break;
 
+            case GameState.Continue:
+                PauseUI.SetActive(false);
+                PauseButton.SetActive(true);
+                ContinueButton.SetActive(false);
+                StopButton.SetActive(true);
+                ScoreText.SetActive(true);
+                Score.SetActive(true);
+                Time.timeScale = 1;
+                break;
             case GameState.Over:
+                Logo.SetActive(false);
+                ButtonStart.SetActive(false);
+                ButtonGuide.SetActive(false);
+                ButtonSettings.SetActive(false);
+                GuideUI.SetActive(false);
+                SettingsUI.SetActive(false);
+                PauseUI.SetActive(false);
+                OverUI.SetActive(true);
+                FinalUI.SetActive(false);
+                ScoreText.SetActive(true);
+                Score.SetActive(true);
+                PauseButton.SetActive(false);
+                ContinueButton.SetActive(false);
+                StopButton.SetActive(false);
+                break;
+
+            case GameState.Final:
+                Logo.SetActive(false);
+                ButtonStart.SetActive(false);
+                ButtonGuide.SetActive(false);
+                ButtonSettings.SetActive(false);
+                GuideUI.SetActive(false);
+                SettingsUI.SetActive(false);
+                PauseUI.SetActive(false);
+                OverUI.SetActive(false);
+                FinalUI.SetActive(true);
+                ScoreText.SetActive(true);
+                Score.SetActive(true);
+                PauseButton.SetActive(false);
+                ContinueButton.SetActive(false);
+                StopButton.SetActive(false);
                 break;
         }
     }
-
 
     #endregion
 

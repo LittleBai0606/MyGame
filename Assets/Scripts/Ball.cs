@@ -1,54 +1,83 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Assets.Scripts;
+﻿using System;
 using UnityEngine;
 
-public class Ball : MonoBehaviour {
+namespace Assets.Scripts
+{
+    public class Ball : MonoBehaviour {
 
-    private bool isMouseDown = false;
+        private bool isMouseDown = false;
 
-    private Vector3 lastMousePosition = Vector3.zero;
+        private Vector3 lastMousePosition = Vector3.zero;
 
-    public bool IsVisible
-    {
-        get { return gameObject.activeInHierarchy; }
-        set { gameObject.SetActive(value);}
-    }
+        public event Action onDead;
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
+        internal Vector3 DefaultPosition;
+
+        void Awake()
         {
-            isMouseDown = true;
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            isMouseDown = false;
-            lastMousePosition = Vector3.zero;
-        }
-        if (isMouseDown)
-        {
-            if (lastMousePosition != Vector3.zero)
-            {
-                Vector3 offset = Camera.main.ScreenToWorldPoint(Input.mousePosition) - lastMousePosition;
-                this.transform.position += offset;
-            }
-            lastMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            DefaultPosition = this.transform.position;
 
+            onDead += Ball_onDead;
         }
-    }
 
-    public void OnCollisonEnter2D(Collision2D collision)
-    {
-        if (Game.Instance.gameState != GameState.Ready)
-        {
-            string tag = collision.transform.tag;
-            if (tag == "Border")
-            {
-                Debug.Log("碰到" + tag + "了");
-            }
-        }
-    }
     
 
+        public bool IsVisible
+        {
+            get { return gameObject.activeInHierarchy; }
+            set { gameObject.SetActive(value);}
+        }
+
+        public void Die()
+        {
+            gameObject.SetActive(false);
+        }
+
+        public void Reset()
+        {
+            Rigidbody2D ball = GetComponent<Rigidbody2D>();
+            this.transform.position = DefaultPosition;
+            this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            IsVisible = true;
+        }
+
+        void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                isMouseDown = true;
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                isMouseDown = false;
+                lastMousePosition = Vector3.zero;
+            }
+            if (isMouseDown)
+            {
+            
+                if (lastMousePosition != Vector3.zero)
+                {
+                    Vector3 offset = Camera.main.ScreenToWorldPoint(Input.mousePosition) - lastMousePosition;
+                    this.transform.position += offset;
+                }
+                lastMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            }
+        }
+
+        public void OnCollisionEnter2D(Collision2D collission)
+        {
+            //if(Game.Instance.gameState != GameState.Play || Game.Instance.gameState != GameState.Continue) {return; }
+            string tag = collission.transform.tag;
+            Debug.Log("碰到" + tag + "了");
+            if(onDead != null)
+                onDead();
+        }
+
+        private void Ball_onDead()
+        {
+            Die();
+        }
+
+    }
 }

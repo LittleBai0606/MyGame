@@ -9,7 +9,6 @@ namespace Assets.Scripts
 
         private bool isFirstTimeInInit;
         private static Game m_Instance = null;
-
         public static Game Instance
         {
             get { return m_Instance; }
@@ -46,6 +45,7 @@ namespace Assets.Scripts
         public GameUI gameUI = null;
         public BackGround background = null;
         public Ball ball = null;
+        public Enemy[] enemies = null;
 
 
         #endregion
@@ -54,6 +54,7 @@ namespace Assets.Scripts
         {
             //监听
             onStateChanged += Game_onStateChanged;
+            ball.onDead += Ball_onDead;
             //初始进入Init
             isFirstTimeInInit = true;
             GotoInit();
@@ -94,6 +95,15 @@ namespace Assets.Scripts
             this.gameState = GameState.Over;
         }
 
+        public void GotoContinue()
+        { 
+            this.gameState = GameState.Continue;
+        }
+
+        public void GotoFinal()
+        {
+            this.gameState = GameState.Final;
+        }
         private void Game_onStateChanged(GameState state)
         {   
             switch (state)
@@ -103,41 +113,72 @@ namespace Assets.Scripts
                     if(isFirstTimeInInit)
                         background.RandomShow();
                     ball.IsVisible = false;
+                    setEnemiesVisible(false);
                     isFirstTimeInInit = false;
                     break;
 
                 case GameState.Guide:
                     gameUI.UpdateUI(state);
                     ball.IsVisible = false;
+                    setEnemiesVisible(false);
                     break;
 
                 case GameState.Settings:
                     gameUI.UpdateUI(state);
                     ball.IsVisible = false;
+                    setEnemiesVisible(false);
                     break;
 
                 case GameState.Ready:
                     gameUI.UpdateUI(state);
                     ball.IsVisible = false;
+                    setEnemiesVisible(false);
                     break;
 
                 case GameState.Play:
                     gameUI.UpdateUI(state);
-                    ball.IsVisible = false;
                     ball.IsVisible = true;
+                    setEnemiesVisible(true);
                     break;
 
                 case GameState.Pause:
                     gameUI.UpdateUI(state);
-                    ball.IsVisible = false;
+                    ball.IsVisible = true;
+                    setEnemiesVisible(true);
+                    break;
+
+                case GameState.Continue:
+                    gameUI.UpdateUI(state);
+                    ball.IsVisible = true;
+                    setEnemiesVisible(true);
                     break;
 
                 case GameState.Over:
                     gameUI.UpdateUI(state);
                     ball.IsVisible = false;
+                    setEnemiesVisible(false);
+                    break;
+
+                case GameState.Final:
+                    gameUI.UpdateUI(state);
+                    ball.IsVisible = false;
+                    setEnemiesVisible(false);
                     break;
             }
             
+        }
+
+        private void Ball_onDead()
+        {
+            GotoOver();
+        }
+
+        internal void setEnemiesVisible(bool isVisible)
+        {
+            foreach (Enemy enemy in enemies)
+            {
+                enemy.IsVisible = isVisible;
+            }
         }
     }
 }
